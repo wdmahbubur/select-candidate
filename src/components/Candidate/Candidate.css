@@ -13,7 +13,7 @@
 .selectedBtn:hover {
     color: rgb(13, 110, 253);
 }
-.icon i {
-    cursor: pointer;
-    padding: 0 5px;
+.icon a {
+    color: white;
+    margin: 0 5px;
 }

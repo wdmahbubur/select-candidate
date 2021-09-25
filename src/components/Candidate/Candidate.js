@@ -2,7 +2,9 @@ import React from 'react';
 import './Candidate.css';
 
 const Candidate = (props) => {
+    // Destructuring
     const { name, role, experience, country, salary, image } = props.candidate;
+
     return (
         <div className="col">
             <div className="card h-100 py-3 bg-primary text-white">
@@ -17,11 +19,12 @@ const Candidate = (props) => {
                     <h5>Salary: ${salary}</h5>
                 </div>
                 <div className="card-footer bg-transparent text-center">
+                    {/* Add Candidate To Selected List */}
                     <button className="btn btn-light selectedBtn" onClick={() => props.handleSelectedBtn(props.candidate)}><i className="fas fa-check"></i> Add To Selected List</button>
                     <div className="icon pt-4">
-                        <i className="fab fa-facebook-square fa-2x"></i>
-                        <i className="fab fa-twitter-square fa-2x"></i>
-                        <i className="fab fa-github-square fa-2x"></i>
+                        <a href="/#"><i className="fab fa-facebook-square fa-2x"></i></a>
+                        <a href="/#"><i className="fab fa-twitter-square fa-2x"></i></a>
+                        <a href="/#"><i className="fab fa-github-square fa-2x"></i></a>
                     </div>
                 </div>
             </div>

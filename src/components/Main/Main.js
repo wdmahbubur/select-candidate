@@ -4,17 +4,24 @@ import SelectedCandidate from '../SelectedCandidate/SelectedCandidate';
 import './Main.css'
 
 const Main = () => {
+    //declare state
     const [candidates, setCandidates] = useState([]);
 
     useEffect(() => {
+        // load from json file
         fetch('./fakeCandidate.json')
             .then(res => res.json())
             .then(data => setCandidates(data))
     }, [])
 
+    // declare state for make selected candidate
     const [selectedCandidateList, setSelectedCandidateList] = useState([]);
+
     const handleSelectedBtn = (selectedCandidate) => {
+        //check selected candidate existed on array
         const newIdIsAvailable = selectedCandidateList.find(candidate => candidate.id === selectedCandidate.id);
+
+        //selected candidate is not existed then add data on array 
         if (!newIdIsAvailable) {
             const newCandidateList = [...selectedCandidateList, selectedCandidate]
             setSelectedCandidateList(newCandidateList);

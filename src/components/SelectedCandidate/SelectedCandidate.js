@@ -1,8 +1,10 @@
 import React from 'react';
 
 const SelectedCandidate = (props) => {
+    // Destructuring
     const { candidateList } = props;
 
+    // count total cost
     const totalCost = candidateList.reduce((previous, current) => previous + current.salary, 0);
 
     return (
@@ -11,10 +13,10 @@ const SelectedCandidate = (props) => {
             <h5>Candidate Name:</h5>
             <ol>
                 {
-                    candidateList.map(candidate => <li key={candidate.id}>{candidate.name}</li>)
+                    candidateList.map(candidate => <li className="fs-5" key={candidate.id}>{candidate.name}</li>)
                 }
             </ol>
-            <h5>Total Cost: {totalCost}</h5>
+            <h5>Total Cost: ${totalCost}</h5>
         </div>
     );
 };
