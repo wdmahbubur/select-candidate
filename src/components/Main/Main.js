@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Candidate from '../Candidate/Candidate';
+import SelectedCandidate from '../SelectedCandidate/SelectedCandidate';
+import './Main.css'
 
 const Main = () => {
     const [candidates, setCandidates] = useState([]);
@@ -10,19 +12,33 @@ const Main = () => {
             .then(data => setCandidates(data))
     }, [])
 
+    const [selectedCandidateList, setSelectedCandidateList] = useState([]);
+    const handleSelectedBtn = (selectedCandidate) => {
+        const newIdIsAvailable = selectedCandidateList.find(candidate => candidate.id === selectedCandidate.id);
+        if (!newIdIsAvailable) {
+            const newCandidateList = [...selectedCandidateList, selectedCandidate]
+            setSelectedCandidateList(newCandidateList);
+        }
+
+    }
+
     return (
-        <div className="d-flex">
-            <div>
-                <div className="row row-cols-1 row-cols-md-3 g-4">
+        <div className="row">
+            <div className="col-md-9">
+                <div className="row row-cols-1 row-cols-md-3 g-5">
                     {
-                        candidates.map(candidate => <Candidate key={candidate.id} candidate={candidate}></Candidate>)
+                        candidates.map(candidate => <Candidate key={candidate.id} candidate={candidate} handleSelectedBtn={handleSelectedBtn}></Candidate>)
                     }
                 </div>
 
             </div>
-            <div>
-
+            <div className="col-md-3">
+                <div className="py-3 px-3 rounded shadow selected-summery">
+                    <h4 className="text-center fw-bold">Selected Summery</h4>
+                    <SelectedCandidate candidateList={selectedCandidateList}></SelectedCandidate>
+                </div>
             </div>
+
 
         </div>
     );
